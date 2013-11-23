@@ -13,6 +13,7 @@ class Screen
 		Screen(int width = 640 , int height = 480, AE_String windowTitle = "");
 		const AE_String getTitleString();
 		void setTitleString(AE_String title);
+		void closeScreen();
 
 	private:
 		SDL_Window *window;

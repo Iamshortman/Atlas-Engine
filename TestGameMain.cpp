@@ -5,10 +5,18 @@ using namespace std;
 int TestingMain()
 {
 	Screen testScreen(640, 800, "Testing...1 2 3");
+	bool escKey = false;
+	while(escKey == false)
+	{
+		SDL_Event keyevent; 
+		SDL_PollEvent(&keyevent);
+		if(keyevent.key.keysym.sym == SDLK_ESCAPE)
+		{
+			escKey = true;
+		}
+	}
 
-	_sleep(3000);
-	testScreen.setTitleString("The Cake is a lie");
-	_sleep(3000);
+	testScreen.closeScreen();
 
 	return 0;
 }

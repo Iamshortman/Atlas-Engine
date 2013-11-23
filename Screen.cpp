@@ -28,3 +28,7 @@ const AE_String Screen::getTitleString()
 	return title;
 }
 
+void Screen::closeScreen()
+{
+	SDL_DestroyWindow(window);
+}
