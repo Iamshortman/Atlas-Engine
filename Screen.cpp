@@ -1,4 +1,3 @@
-
 #include "Screen.h"
 
 Screen::Screen(int width, int height, AE_String windowTitle)
@@ -10,11 +9,39 @@ Screen::Screen(int width, int height, AE_String windowTitle)
         windowTitle.c_str(),
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        640,
-        480,
-        SDL_WINDOW_OPENGL
+        width,
+        height,
+        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE
     );
 
+	// Create an OpenGL context associated with the window.
+	glcontext = SDL_GL_CreateContext(window);
+
+	initGL(width, height);
+}
+
+void Screen::initGL(int width, int height) 
+{
+	glClearColor(0, 0, 0, 0);
+	glClearDepth(1.0f);
+ 
+	glViewport(0, 0, width, height);
+ 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+ 
+	glOrtho(0, width, height, 0, 1, -1);
+ 
+	glMatrixMode(GL_MODELVIEW);
+ 
+	glEnable(GL_TEXTURE_2D);
+ 
+	glLoadIdentity();
+}
+
+void Screen::updatedScreen()
+{
+	SDL_GL_SwapWindow(window);
 }
 
 void Screen::setTitleString(AE_String title)

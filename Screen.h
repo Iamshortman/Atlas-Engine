@@ -1,5 +1,5 @@
 #include <SDL.h>
-#include <stdio.h>
+#include <SDL_opengl.h>
 #include <string>
 
 #ifndef SCREEN_H
@@ -14,10 +14,12 @@ class Screen
 		const AE_String getTitleString();
 		void setTitleString(AE_String title);
 		void closeScreen();
+		void updatedScreen();
 
 	private:
 		SDL_Window *window;
-
+		SDL_GLContext glcontext;
+		void initGL(int width, int height);
 };
 
 #endif
