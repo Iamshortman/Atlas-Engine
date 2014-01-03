@@ -22,7 +22,20 @@ Screen::Screen(int width, int height, AE_String windowTitle)
 
 void Screen::initGL(int width, int height) 
 {
-	glClearColor(0, 0, 0, 0);
+	//Initialize Projection Matrix 
+	glMatrixMode( GL_PROJECTION ); 
+	glLoadIdentity(); 
+	
+	glOrtho(0, width, height, 0, 1, -1);
+
+	//Initialize Modelview Matrix 
+	glMatrixMode( GL_MODELVIEW ); 
+	glLoadIdentity();
+
+	 //Initialize clear color 
+	glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+
+	/*glClearColor(0, 0, 0, 0);
 	glClearDepth(1.0f);
  
 	glViewport(0, 0, width, height);
@@ -36,7 +49,7 @@ void Screen::initGL(int width, int height)
  
 	glEnable(GL_TEXTURE_2D);
  
-	glLoadIdentity();
+	glLoadIdentity();*/
 }
 
 void Screen::updatedScreen()
