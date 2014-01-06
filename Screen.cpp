@@ -35,6 +35,9 @@ void Screen::initGL(int width, int height)
 	 //Initialize clear color 
 	glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
 
+	//  Enable Z-buffer depth test
+	//glEnable(GL_DEPTH_TEST);
+
 	/*glClearColor(0, 0, 0, 0);
 	glClearDepth(1.0f);
  
@@ -52,9 +55,20 @@ void Screen::initGL(int width, int height)
 	glLoadIdentity();*/
 }
 
-void Screen::updatedScreen()
+void Screen::updatedBuffer()
 {
 	SDL_GL_SwapWindow(window);
+}
+
+void Screen::setBufferClearColor(GLclampf red, GLclampf green, GLclampf blue,
+GLclampf alpha)
+{
+	 glClearColor(red, green, blue, alpha);
+}
+
+void Screen::clearBuffer()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Screen::setTitleString(AE_String title)

@@ -14,7 +14,10 @@ class Screen
 		const AE_String getTitleString();
 		void setTitleString(AE_String title);
 		void closeScreen();
-		void updatedScreen();
+		void updatedBuffer();
+		void clearBuffer();
+		void setBufferClearColor(GLclampf red, GLclampf green, GLclampf blue,
+GLclampf alpha);
 
 	private:
 		SDL_Window *window;
